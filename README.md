@@ -2,8 +2,22 @@
 
 ## 安装插件
 
-1. 复制 `include/payment/bapp.php` 到您的织梦CMS的 `include/payment/` 下  
-1. 进入 「织梦CMS管理后台」-「系统」-「系统设置」-「SQL命令行工具」-「运行SQL命令行」-「单行命令」
+1, 复制 `include/payment/bapp.php` 到您的织梦CMS的 `include/payment/` 下
+2, 在您的织梦CMS里面找到 `/plus/carbuyction.php` ，打开并编辑
+
+找到
+
+```php
+$write_list = array('alipay', 'bank', 'cod', 'yeepay');
+```
+
+改为
+
+```php
+$write_list = array('alipay', 'bank', 'cod', 'yeepay', 'bapp');
+```
+  
+3, 进入 「织梦CMS管理后台」-「系统」-「系统设置」-「SQL命令行工具」-「运行SQL命令行」-「单行命令」
   复制以下代码，并点击 「确认」
  
 ```sql
