@@ -66,6 +66,13 @@ class Bapp
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_TIMEOUT, 60);
         $output = curl_exec($curl);
+        $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        if ($httpCode != 200) {
+            return array(
+                'code' => $httpCode,
+                'msg' => '网络异常'
+            );
+        }
         if (curl_errno($curl) > 0) {
             return array();
         }
@@ -154,7 +161,7 @@ class Bapp
             if ($orderType == 'goods') {
                 $row = $this->dsql->GetOne("SELECT * FROM #@__shops_orders WHERE `oid`= '{$orderId}'");
                 $this->mid = $row['userid'];
-                if($this->success_db($orderId)) {
+                if ($this->success_db($orderId)) {
                     echo 'SUCCESS';
                     die();
                 }
